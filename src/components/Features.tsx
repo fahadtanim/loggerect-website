@@ -1,6 +1,6 @@
 "use client";
 
-import { useLogger, useLifecycleLogger } from "@/lib/logger";
+import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 
 const features = [
   {

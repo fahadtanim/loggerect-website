@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useLogger, useLifecycleLogger, useStateLogger, useTimer } from "@/lib/logger";
+import { useLogger, useLifecycleLogger, useStateLogger, useTimer } from "loggerect/hooks";
 
 type TabKey = "decorators" | "hoc" | "hooks" | "config";
 
@@ -16,7 +16,7 @@ const codeExamples: Record<TabKey, { filename: string; code: string }> = {
   decorators: {
     filename: "UserProfile.tsx",
     code: `import React from 'react';
-import { LogClass, Log, LogRender, LogAsync } from 'logrect';
+import { LogClass, Log, LogRender, LogAsync } from 'loggerect';
 
 @LogClass()  // Logs all methods automatically
 class UserProfile extends React.Component {
@@ -45,7 +45,7 @@ class UserProfile extends React.Component {
   },
   hoc: {
     filename: "Dashboard.tsx",
-    code: `import { withLogger, withLoggerMemo, withErrorLogger } from 'logrect';
+    code: `import { withLogger, withLoggerMemo, withErrorLogger } from 'loggerect';
 
 // Basic HOC - tracks renders, mounts, prop changes
 function Dashboard({ user, data }) {
@@ -79,7 +79,7 @@ const SafeWidget = withErrorLogger(RiskyWidget, {
   useStateLogger,
   useWhyDidYouRender,
   useTimer
-} from 'logrect';
+} from 'loggerect';
 
 function Counter(props) {
   // Logs mount/unmount with lifetime
@@ -108,8 +108,8 @@ function Counter(props) {
 }`,
   },
   config: {
-    filename: "logrect.config.ts",
-    code: `import { configure, applyPreset } from 'logrect';
+    filename: "loggerect.config.ts",
+    code: `import { configure, applyPreset } from 'loggerect';
 
 // Use a preset
 applyPreset('development');  // or 'production', 'verbose', 'minimal'

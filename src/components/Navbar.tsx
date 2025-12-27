@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useLogger, useLifecycleLogger } from "@/lib/logger";
+import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 
 export default function Navbar() {
   const log = useLogger("Navbar");
@@ -41,11 +41,13 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link 
           href="/" 
-          className="flex items-center gap-2 text-white font-bold text-xl"
+          className="flex items-center gap-3 text-white font-bold text-xl"
           onClick={() => handleNavClick("home")}
         >
-          <span className="text-2xl">🟩</span>
-          <span>logrect</span>
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-cyan)] flex items-center justify-center">
+            <span className="text-white font-bold text-sm">L</span>
+          </div>
+          <span>loggerect</span>
         </Link>
 
         <div className="flex items-center gap-8">
@@ -64,14 +66,14 @@ export default function Navbar() {
             Examples
           </Link>
           <Link
-            href="#docs"
+            href="/docs"
             className="text-slate-400 hover:text-green-400 transition-colors text-sm font-medium hidden sm:block"
             onClick={() => handleNavClick("docs")}
           >
             Docs
           </Link>
           <a
-            href="https://github.com/yourusername/logrect"
+            href="https://github.com/fahadtanim/loggerect"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center p-2 bg-[#1a1a25] rounded-xl hover:bg-[#16161f] transition-colors"

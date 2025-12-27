@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import ConsoleDemo from "./ConsoleDemo";
-import { useLogger, useLifecycleLogger, useTimer } from "@/lib/logger";
+import { useLogger, useLifecycleLogger, useTimer } from "loggerect/hooks";
 
 export default function Hero() {
   const log = useLogger("Hero");
@@ -15,10 +16,10 @@ export default function Hero() {
     log.info("Copy button clicked");
     
     await measure("copyToClipboard", async () => {
-      await navigator.clipboard.writeText("npm install logrect");
+      await navigator.clipboard.writeText("npm install loggerect");
     });
     
-    log.debug("Text copied to clipboard", { text: "npm install logrect" });
+    log.debug("Text copied to clipboard", { text: "npm install loggerect" });
     setCopied(true);
     
     setTimeout(() => {
@@ -40,7 +41,7 @@ export default function Hero() {
           style={{ animationDelay: "0s" }}
         >
           <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse-dot" />
-          Now with TypeScript Decorators
+          Now with TypeScript Decorators & Source Tracking
         </div>
 
         {/* Title */}
@@ -59,7 +60,7 @@ export default function Hero() {
         >
           A powerful, zero-dependency logger with full source path tracking,
           TypeScript decorators, and environment-aware output. See exactly where
-          your logs come from.
+          your logs come from with accurate file:line references.
         </p>
 
         {/* CTAs */}
@@ -72,21 +73,21 @@ export default function Hero() {
             className="relative inline-flex items-center gap-2 px-6 py-4 bg-gradient-to-r from-green-500 to-cyan-500 text-[#0a0a0f] font-semibold rounded-xl btn-glow hover:-translate-y-0.5 transition-all"
           >
             <span className="text-xl">📦</span>
-            npm install logrect
+            npm install loggerect
             {copied && (
               <span className="absolute right-4 bg-[#0a0a0f] text-white text-xs px-2 py-1 rounded animate-fade-in">
                 Copied!
               </span>
             )}
           </button>
-          <a
-            href="#examples"
+          <Link
+            href="/docs"
             onClick={handleExamplesClick}
             className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#1a1a25] border border-white/10 text-white font-semibold rounded-xl hover:border-green-500 hover:bg-[#16161f] transition-all"
           >
-            <span className="text-xl">👁️</span>
-            See Examples
-          </a>
+            <span className="text-xl">📚</span>
+            Documentation
+          </Link>
         </div>
 
         {/* Stats */}

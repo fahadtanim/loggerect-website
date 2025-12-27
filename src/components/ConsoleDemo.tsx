@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useLogger, useLifecycleLogger, useStateLogger } from "@/lib/logger";
+import { useLogger, useLifecycleLogger, useStateLogger } from "loggerect/hooks";
 
 interface LogLine {
   id: number;

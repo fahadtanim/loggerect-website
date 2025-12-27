@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useLogger, useLifecycleLogger, useTimer } from "@/lib/logger";
+import Link from "next/link";
+import { useLogger, useLifecycleLogger, useTimer } from "loggerect/hooks";
 
 export default function CTA() {
   const log = useLogger("CTA");
@@ -14,7 +15,7 @@ export default function CTA() {
     log.info("CTA copy button clicked");
     
     await measure("copyToClipboard", async () => {
-      await navigator.clipboard.writeText("npm install logrect");
+      await navigator.clipboard.writeText("npm install loggerect");
     });
     
     log.debug("Install command copied to clipboard");
@@ -38,7 +39,7 @@ export default function CTA() {
           <span className="gradient-text">Like a Pro?</span>
         </h2>
         <p className="text-lg text-slate-400 mb-10">
-          Start using logrect today and never wonder where a log came from again.
+          Start using loggerect today and never wonder where a log came from again.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
@@ -46,22 +47,20 @@ export default function CTA() {
             className="relative inline-flex items-center justify-center gap-2 px-8 py-4 bg-gradient-to-r from-green-500 to-cyan-500 text-[#0a0a0f] font-semibold text-lg rounded-xl btn-glow hover:-translate-y-0.5 transition-all"
           >
             <span className="text-xl">📦</span>
-            npm install logrect
+            npm install loggerect
             {copied && (
               <span className="absolute right-4 bg-[#0a0a0f] text-white text-xs px-2 py-1 rounded animate-fade-in">
                 Copied!
               </span>
             )}
           </button>
-          <a
-            href="https://github.com/yourusername/logrect"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/docs"
             onClick={handleGitHubClick}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/10 text-white font-semibold text-lg rounded-xl hover:border-green-500 hover:bg-[#1a1a25] transition-all"
           >
-            View on GitHub
-          </a>
+            Read the Docs
+          </Link>
         </div>
       </div>
     </section>

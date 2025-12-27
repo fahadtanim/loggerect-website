@@ -1,6 +1,6 @@
 "use client";
 
-import { useLogger, useLifecycleLogger } from "@/lib/logger";
+import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 
 const devFeatures = [
   "Full source paths with line numbers",
@@ -34,7 +34,7 @@ export default function Comparison() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-2 bg-green-500/10 text-green-400 rounded-full text-sm font-semibold uppercase tracking-wider mb-4">
-            Why logrect?
+            Why loggerect?
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold">
             Development vs

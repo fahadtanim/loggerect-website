@@ -1,5 +1,5 @@
 {
-  "name": "website",
+  "name": "loggerect-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "logrect": "file:..",
+    "loggerect": "^1.0.4",
     "next": "16.1.1",
     "react": "19.2.3",
     "react-dom": "19.2.3"

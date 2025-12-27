@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "logrect - The React Logger That Gets You",
+  title: "loggerect - The React Logger That Gets You",
   description: "A powerful, highly configurable React logger with TypeScript decorators, environment-aware logging, and full source path tracking",
-  keywords: ["react", "logger", "typescript", "decorator", "debugging", "console", "development"],
-  authors: [{ name: "logrect" }],
+  keywords: ["react", "logger", "typescript", "decorator", "debugging", "console", "development", "loggerect"],
+  authors: [{ name: "loggerect" }],
   openGraph: {
-    title: "logrect - React Logging That Actually Works",
+    title: "loggerect - React Logging That Actually Works",
     description: "A powerful, zero-dependency logger with full source path tracking, TypeScript decorators, and environment-aware output.",
     type: "website",
-    url: "https://logrect.dev",
+    url: "https://loggerect.dev",
   },
   twitter: {
     card: "summary_large_image",
-    title: "logrect - React Logging That Actually Works",
+    title: "loggerect - React Logging That Actually Works",
     description: "A powerful, zero-dependency logger with full source path tracking, TypeScript decorators, and environment-aware output.",
   },
 };
