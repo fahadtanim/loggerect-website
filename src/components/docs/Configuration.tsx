@@ -247,6 +247,28 @@ configure({
   colors: true, // boolean
 });`}
         />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+            🎨 Server Console Colors
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)] mb-2">
+            loggerect automatically matches console colors between server and browser:
+          </p>
+          <ul className="text-sm text-[var(--text-secondary)] space-y-1 list-disc list-inside">
+            <li>
+              <strong>Server console:</strong> Uses ANSI color codes matching CSS colors
+            </li>
+            <li>
+              <strong>Browser console:</strong> Uses CSS styling with matching colors
+            </li>
+            <li>
+              <strong>Badge styling:</strong> Same background and text colors on both
+            </li>
+            <li>
+              <strong>Component names:</strong> Automatically extracted and filtered
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">

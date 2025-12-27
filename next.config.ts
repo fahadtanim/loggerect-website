@@ -8,7 +8,8 @@ const nextConfig: NextConfig = {
   output: "export",
 
   // Base path for GitHub Pages (update if using a custom domain)
-  basePath: "/loggerect",
+  // Only use basePath in production builds, not in development
+  basePath: process.env.NODE_ENV === "production" ? "/loggerect" : "",
 
   // Trailing slash for GitHub Pages compatibility
   trailingSlash: true,

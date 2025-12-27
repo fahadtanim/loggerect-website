@@ -24,6 +24,140 @@ export function GettingStarted() {
 
       <section className="space-y-3 sm:space-y-4">
         <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
+          Bundle Setup (Optional but Recommended)
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          For accurate source file:line tracking in the browser console, add one of
+          the build plugins. This enables clickable file paths in your logs:
+        </p>
+
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Vite
+            </h3>
+            <CodeBlock
+              code={`// vite.config.ts
+import { defineConfig } from "vite";
+import logrectPlugin from "loggerect/vite-plugin";
+
+export default defineConfig({
+  plugins: [logrectPlugin()],
+});`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Next.js (Turbopack)
+            </h3>
+            <CodeBlock
+              code={`// next.config.ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  turbopack: {
+    rules: {
+      "*.{ts,tsx,js,jsx}": {
+        loaders: ["loggerect/loader"],
+      },
+    },
+  },
+};
+
+export default nextConfig;`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Next.js (Webpack)
+            </h3>
+            <CodeBlock
+              code={`// next.config.ts
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  webpack: (config, { dev }) => {
+    if (dev) {
+      const logrectPlugin = require("loggerect/unplugin");
+      config.plugins.push(logrectPlugin.webpack());
+    }
+    return config;
+  },
+};
+
+export default nextConfig;`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Webpack
+            </h3>
+            <CodeBlock
+              code={`// webpack.config.js
+const logrectPlugin = require("loggerect/unplugin");
+
+module.exports = {
+  plugins: [logrectPlugin.webpack()],
+};`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Rollup
+            </h3>
+            <CodeBlock
+              code={`// rollup.config.js
+import logrectPlugin from "loggerect/unplugin";
+
+export default {
+  plugins: [logrectPlugin.rollup()],
+};`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              esbuild
+            </h3>
+            <CodeBlock
+              code={`// esbuild.config.js
+const logrectPlugin = require("loggerect/unplugin");
+
+require("esbuild").build({
+  plugins: [logrectPlugin.esbuild()],
+});`}
+            />
+          </div>
+
+          <div>
+            <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+              Babel (Alternative)
+            </h3>
+            <CodeBlock
+              code={`// babel.config.js
+module.exports = {
+  plugins: ["loggerect/babel-plugin"],
+};`}
+            />
+          </div>
+        </div>
+
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <p className="text-sm text-[var(--text-secondary)]">
+            <strong className="text-[var(--text-primary)]">Note:</strong> The bundle
+            setup is optional. loggerect works without it, but you won&apos;t get
+            accurate source file paths in the console. Without the plugin, source
+            tracking relies on stack traces which may not always be accurate.
+          </p>
+        </div>
+      </section>
+
+      <section className="space-y-3 sm:space-y-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
           Quick Start
         </h2>
         <p className="text-[var(--text-secondary)]">
@@ -56,7 +190,7 @@ logger.error("Error occurred", { details: "error info" });`}
           tracking:
         </p>
         <CodeBlock
-          code={`import { useLogger, useLifecycleLogger } from "loggerect";
+          code={`import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 
 function MyComponent() {
   const log = useLogger("MyComponent");
@@ -69,6 +203,40 @@ function MyComponent() {
   return <button onClick={handleClick}>Click me</button>;
 }`}
         />
+      </section>
+
+      <section className="space-y-3 sm:space-y-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
+          SSR Support (Next.js, Remix, etc.)
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          loggerect is SSR-safe. Use the main entry point in server components:
+        </p>
+        <CodeBlock
+          code={`// Next.js Server Component
+import { logger, isServer } from "loggerect";
+
+export default async function Page() {
+  if (isServer()) {
+    const log = logger
+      .forComponent("Page")
+      .withTags("server", "page");
+    
+    log.info("Rendering page on server");
+  }
+
+  return <div>Hello World</div>;
+}`}
+        />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <p className="text-sm text-[var(--text-secondary)]">
+            <strong className="text-[var(--text-primary)]">Note:</strong> The main{" "}
+            <code className="text-[var(--accent-blue)]">loggerect</code> entry point
+            is SSR-safe. For React hooks, use{" "}
+            <code className="text-[var(--accent-blue)]">loggerect/hooks</code> in
+            client components.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">

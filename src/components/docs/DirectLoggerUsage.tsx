@@ -147,6 +147,21 @@ function processPayment(amount: number) {
   log.info("Processing payment", { amount });
   // ... payment logic
   log.info("Payment processed", { amount, status: "success" });
+}
+
+// Use in Next.js Server Components (SSR)
+import { logger, isServer } from "loggerect";
+
+export default async function ServerPage() {
+  if (isServer()) {
+    const log = logger
+      .forComponent("ServerPage")
+      .withTags("server", "page");
+    
+    log.info("Rendering page on server");
+  }
+  
+  return <div>Server-rendered content</div>;
 }`}
         />
       </section>
