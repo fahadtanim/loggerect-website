@@ -49,7 +49,7 @@ export default function Navbar() {
           onClick={() => handleNavClick("home")}
         >
           <Image
-            src="./favicon/favicon-32x32.png"
+            src="./loggerect.png"
             alt="loggerect logo"
             width={32}
             height={32}
