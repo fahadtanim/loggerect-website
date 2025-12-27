@@ -94,10 +94,10 @@ export default function Features() {
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`bg-[#16161f] rounded-2xl p-6 border transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer ${
+              className={`bg-[#16161f] transition-all duration-300 rounded-2xl p-6 border border-blue-500/30 hover:-translate-y-1 hover:shadow-lg cursor-pointer hover:border-green-500/30 hover:bg-linear-to-br hover:from-green-500/10 hover:to-cyan-500/5 bg-linear-to-br from-blue-500/10 to-cyan-500/5 ${
                 feature.featured
-                  ? "border-green-500/30 bg-gradient-to-br from-green-500/10 to-cyan-500/5"
-                  : "border-green-500/30 bg-gradient-to-br from-green-500/10 to-cyan-500/5"
+                  ? "border-green-500/30 bg-linear-to-br from-green-500/10 to-cyan-500/5"
+                  : ""
               }`}
               onMouseEnter={() => handleFeatureHover(feature.title)}
               onClick={() => handleFeatureClick(feature.title)}

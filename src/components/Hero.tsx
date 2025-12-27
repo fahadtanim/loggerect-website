@@ -49,7 +49,7 @@ export default function Hero() {
           className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up"
           style={{ animationDelay: "0.1s" }}
         >
-          <span className="block">React Logging</span>
+          <span className="block">React & Node.js Logging</span>
           <span className="block gradient-text">That Actually Works</span>
         </h1>
 
@@ -58,7 +58,7 @@ export default function Hero() {
           className="text-lg text-slate-400 mb-8 leading-relaxed animate-fade-in-up"
           style={{ animationDelay: "0.2s" }}
         >
-          A powerful, zero-dependency logger with full source path tracking,
+          A powerful, zero-dependency logger for React and Node.js with full source path tracking,
           TypeScript decorators, and environment-aware output. See exactly where
           your logs come from with accurate file:line references.
         </p>

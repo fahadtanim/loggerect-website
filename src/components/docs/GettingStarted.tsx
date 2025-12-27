@@ -9,7 +9,7 @@ export function GettingStarted() {
         </h1>
         <p className="text-base sm:text-lg text-[var(--text-secondary)]">
           Get up and running with loggerect in minutes. A powerful,
-          zero-dependency React logger with full source path tracking.
+          zero-dependency logger for React and Node.js with full source path tracking.
         </p>
       </div>
 
@@ -170,7 +170,7 @@ module.exports = {
           Quick Start
         </h2>
         <p className="text-[var(--text-secondary)]">
-          Import and use the logger anywhere in your React application:
+          Import and use the logger in React or Node.js:
         </p>
         <CodeBlock
           code={`import { logger, configure } from "loggerect";
@@ -188,6 +188,41 @@ logger.info("General information");
 logger.warn("Warning message");
 logger.error("Error occurred", { details: "error info" });`}
         />
+      </section>
+
+      <section className="space-y-3 sm:space-y-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
+          Node.js Usage
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Use loggerect in pure Node.js applications without React:
+        </p>
+        <CodeBlock
+          code={`// Node.js - no React needed!
+const { logger } = require("loggerect");
+// or with ES modules:
+// import { logger } from "loggerect";
+
+// Use in any Node.js application
+logger.info("Server started", { port: 3000 });
+logger.debug("Processing request", { method: "GET", path: "/api/users" });
+
+// Component-scoped logging (works in Node.js too!)
+const apiLogger = logger.forComponent("API").withTags("http", "rest");
+apiLogger.info("Request received", { userId: 123 });
+
+// Performance timing
+logger.time("databaseQuery");
+await queryDatabase();
+logger.timeEnd("databaseQuery"); // Logs: ⏱️ databaseQuery: 45.23ms`}
+        />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <p className="text-sm text-[var(--text-secondary)]">
+            <strong className="text-[var(--text-primary)]">💡 Tip:</strong> React is
+            optional! The core logger works in Node.js, React, Next.js, and any
+            JavaScript environment. React is only needed if you use hooks or HOCs.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">
@@ -241,7 +276,7 @@ export default async function Page() {
           <p className="text-sm text-[var(--text-secondary)]">
             <strong className="text-[var(--text-primary)]">Note:</strong> The main{" "}
             <code className="text-[var(--accent-blue)]">loggerect</code> entry point
-            is SSR-safe. For React hooks, use{" "}
+            is SSR-safe and works in Node.js, React, and Next.js. For React hooks, use{" "}
             <code className="text-[var(--accent-blue)]">loggerect/hooks</code> in
             client components.
           </p>

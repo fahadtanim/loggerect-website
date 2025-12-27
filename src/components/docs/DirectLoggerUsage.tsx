@@ -18,16 +18,73 @@ export function DirectLoggerUsage() {
           Basic Import and Usage
         </h2>
         <p className="text-[var(--text-secondary)]">
-          Import the logger and start logging immediately:
+          Import the logger and start logging immediately in Node.js or React:
         </p>
         <CodeBlock
-          code={`import { logger } from "loggerect";
+          code={`// Node.js (CommonJS)
+const { logger } = require("loggerect");
+
+// Node.js/React (ES Modules)
+import { logger } from "loggerect";
 
 // Simple logging
 logger.info("Application started");
 logger.debug("Debug information");
 logger.warn("Warning message");
 logger.error("Error occurred");`}
+        />
+      </section>
+
+      <section className="space-y-3 sm:space-y-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
+          Node.js Example
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Complete example for a Node.js server application:
+        </p>
+        <CodeBlock
+          code={`// server.js
+const { logger, configure } = require("loggerect");
+
+// Configure logger
+configure({
+  level: "debug",
+  timestamps: true,
+  format: "pretty",
+});
+
+// Component-scoped logging for different services
+const apiLogger = logger.forComponent("API").withTags("http", "rest");
+const dbLogger = logger.forComponent("Database").withTags("sql", "query");
+
+// Use in your application
+apiLogger.info("Server started", { port: 3000 });
+
+// In request handler
+app.get("/api/users", async (req, res) => {
+  apiLogger.debug("Request received", {
+    method: req.method,
+    path: req.path,
+    ip: req.ip,
+  });
+
+  dbLogger.time("userQuery");
+  const users = await db.query("SELECT * FROM users");
+  dbLogger.timeEnd("userQuery");
+
+  apiLogger.info("Request completed", { userCount: users.length });
+  res.json(users);
+});
+
+// Error handling
+try {
+  await processData();
+} catch (error) {
+  logger.error("Processing failed", {
+    error: error.message,
+    stack: error.stack,
+  });
+}`}
         />
       </section>
 
