@@ -35,7 +35,7 @@ html {
 }
 
 body {
-  font-family: "Outfit", system-ui, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -256,11 +256,11 @@ body {
 
 /* Font families */
 .font-outfit {
-  font-family: "Outfit", system-ui, sans-serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
 }
 
 .font-mono {
-  font-family: "JetBrains Mono", monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 /* Custom scrollbar for docs sidebar */
