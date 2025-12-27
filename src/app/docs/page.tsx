@@ -31,7 +31,7 @@ export default function DocsPage() {
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="./" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-cyan)] flex items-center justify-center">
               <span className="text-white font-bold text-sm">L</span>
             </div>
@@ -41,13 +41,13 @@ export default function DocsPage() {
           </Link>
           <div className="flex items-center gap-6">
             <Link
-              href="./"
+              href="/"
               className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
             >
               Home
             </Link>
             <Link
-              href="./docs"
+              href="/docs"
               className="text-[var(--accent-green)] font-medium"
             >
               Docs

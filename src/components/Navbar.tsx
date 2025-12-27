@@ -43,7 +43,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link
-          href="./"
+          href="/"
           className="flex items-center gap-3 text-white font-bold text-xl"
           onClick={() => handleNavClick("home")}
         >
@@ -69,7 +69,7 @@ export default function Navbar() {
             Examples
           </Link>
           <Link
-            href="./docs"
+            href="/docs"
             className="text-slate-400 hover:text-green-400 transition-colors text-sm font-medium hidden sm:block"
             onClick={() => handleNavClick("docs")}
           >

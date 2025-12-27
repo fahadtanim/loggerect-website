@@ -6,12 +6,14 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 const outfit = Outfit({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   variable: "--font-outfit",
+  display: "swap",
 });
 
 export const metadata: Metadata = {

@@ -45,9 +45,9 @@ export default function Footer() {
             npm
           </a>
           <Link
-            href="./docs"
+            href="/docs"
             className="text-slate-400 hover:text-green-400 transition-colors"
-            onClick={() => handleLinkClick("Documentation", "./docs")}
+            onClick={() => handleLinkClick("Documentation", "/docs")}
           >
             Documentation
           </Link>

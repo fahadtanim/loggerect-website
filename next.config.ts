@@ -8,10 +8,13 @@ const nextConfig: NextConfig = {
   output: "export",
 
   // Base path for GitHub Pages (update if using a custom domain)
-  // basePath: '/loggerect',
+  basePath: "/loggerect",
 
   // Asset prefix for GitHub Pages (update if using a custom domain)
-  // assetPrefix: '/loggerect',
+  assetPrefix: "/loggerect",
+
+  // Trailing slash for GitHub Pages compatibility
+  trailingSlash: true,
 
   // Turbopack config - uses loggerect loader for source tracking
   turbopack: {
