@@ -10,9 +10,6 @@ const nextConfig: NextConfig = {
   // Base path for GitHub Pages (update if using a custom domain)
   basePath: "/loggerect",
 
-  // Asset prefix for GitHub Pages (update if using a custom domain)
-  assetPrefix: "/loggerect",
-
   // Trailing slash for GitHub Pages compatibility
   trailingSlash: true,
 
