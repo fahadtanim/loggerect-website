@@ -5,11 +5,11 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
 
   // Static export for GitHub Pages
-  output: 'export',
-  
+  output: "export",
+
   // Base path for GitHub Pages (update if using a custom domain)
   // basePath: '/loggerect',
-  
+
   // Asset prefix for GitHub Pages (update if using a custom domain)
   // assetPrefix: '/loggerect',
 

@@ -23,24 +23,33 @@ const sections: { id: Section; title: string; icon: string }[] = [
 ];
 
 export default function DocsPage() {
-  const [activeSection, setActiveSection] = useState<Section>("getting-started");
+  const [activeSection, setActiveSection] =
+    useState<Section>("getting-started");
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="./" className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-cyan)] flex items-center justify-center">
               <span className="text-white font-bold text-sm">L</span>
             </div>
-            <span className="text-xl font-bold text-[var(--text-primary)]">loggerect</span>
+            <span className="text-xl font-bold text-[var(--text-primary)]">
+              loggerect
+            </span>
           </Link>
           <div className="flex items-center gap-6">
-            <Link href="/" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            <Link
+              href="./"
+              className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+            >
               Home
             </Link>
-            <Link href="/docs" className="text-[var(--accent-green)] font-medium">
+            <Link
+              href="./docs"
+              className="text-[var(--accent-green)] font-medium"
+            >
               Docs
             </Link>
             <a
@@ -102,11 +111,13 @@ export default function DocsPage() {
 }
 
 // Code Block Component
-function CodeBlock({ code, language = "tsx" }: { code: string; language?: string }) {
+function CodeBlock({ code }: { code: string }) {
   return (
     <div className="relative group">
       <pre className="bg-[var(--bg-code)] border border-[var(--border-subtle)] rounded-xl p-4 overflow-x-auto">
-        <code className="text-sm font-mono text-[var(--text-secondary)]">{code}</code>
+        <code className="text-sm font-mono text-[var(--text-secondary)]">
+          {code}
+        </code>
       </pre>
       <button
         onClick={() => navigator.clipboard.writeText(code)}
@@ -123,21 +134,28 @@ function GettingStarted() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Getting Started</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          Getting Started
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
-          Get up and running with loggerect in minutes. A powerful, zero-dependency React logger with full source path tracking.
+          Get up and running with loggerect in minutes. A powerful,
+          zero-dependency React logger with full source path tracking.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Installation</h2>
-        <CodeBlock code="npm install loggerect" language="bash" />
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Installation
+        </h2>
+        <CodeBlock code="npm install loggerect" />
         <p className="text-[var(--text-secondary)]">Or with yarn/pnpm:</p>
-        <CodeBlock code={`yarn add loggerect\n# or\npnpm add loggerect`} language="bash" />
+        <CodeBlock code={`yarn add loggerect\n# or\npnpm add loggerect`} />
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Quick Start</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Quick Start
+        </h2>
         <p className="text-[var(--text-secondary)]">
           Import and use the logger anywhere in your React application:
         </p>
@@ -160,9 +178,12 @@ logger.error("Error occurred", { details: "error info" });`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Using React Hooks</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Using React Hooks
+        </h2>
         <p className="text-[var(--text-secondary)]">
-          Use hooks for component-scoped logging with automatic lifecycle tracking:
+          Use hooks for component-scoped logging with automatic lifecycle
+          tracking:
         </p>
         <CodeBlock
           code={`import { useLogger, useLifecycleLogger } from "loggerect";
@@ -181,12 +202,29 @@ function MyComponent() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Log Levels</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Log Levels
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            { level: "TRACE", badge: "🔍", color: "gray", desc: "Most verbose, detailed tracing" },
-            { level: "DEBUG", badge: "🐛", color: "green", desc: "Debug information" },
-            { level: "INFO", badge: "ℹ️", color: "blue", desc: "General information" },
+            {
+              level: "TRACE",
+              badge: "🔍",
+              color: "gray",
+              desc: "Most verbose, detailed tracing",
+            },
+            {
+              level: "DEBUG",
+              badge: "🐛",
+              color: "green",
+              desc: "Debug information",
+            },
+            {
+              level: "INFO",
+              badge: "ℹ️",
+              color: "blue",
+              desc: "General information",
+            },
             { level: "WARN", badge: "⚠️", color: "yellow", desc: "Warnings" },
             { level: "ERROR", badge: "❌", color: "red", desc: "Errors" },
           ].map((item) => (
@@ -196,7 +234,9 @@ function MyComponent() {
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-xl">{item.badge}</span>
-                <span className="font-mono font-semibold text-[var(--text-primary)]">{item.level}</span>
+                <span className="font-mono font-semibold text-[var(--text-primary)]">
+                  {item.level}
+                </span>
               </div>
               <p className="text-sm text-[var(--text-muted)]">{item.desc}</p>
             </div>
@@ -211,14 +251,18 @@ function Configuration() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Configuration</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          Configuration
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
           Customize loggerect behavior with comprehensive configuration options.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Basic Configuration</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Basic Configuration
+        </h2>
         <CodeBlock
           code={`import { configure } from "loggerect";
 
@@ -246,7 +290,9 @@ configure({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Environment-Specific Configuration</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Environment-Specific Configuration
+        </h2>
         <CodeBlock
           code={`configure({
   // Auto-detected, or set manually
@@ -265,7 +311,9 @@ configure({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Custom Styles</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Custom Styles
+        </h2>
         <CodeBlock
           code={`configure({
   styles: {
@@ -290,31 +338,56 @@ configure({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">All Configuration Options</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          All Configuration Options
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-[var(--border-medium)]">
                 <th className="py-3 px-4 text-[var(--text-primary)]">Option</th>
                 <th className="py-3 px-4 text-[var(--text-primary)]">Type</th>
-                <th className="py-3 px-4 text-[var(--text-primary)]">Default</th>
-                <th className="py-3 px-4 text-[var(--text-primary)]">Description</th>
+                <th className="py-3 px-4 text-[var(--text-primary)]">
+                  Default
+                </th>
+                <th className="py-3 px-4 text-[var(--text-primary)]">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="text-[var(--text-secondary)]">
               {[
-                ["level", "LogLevel", '"trace" (dev) / "warn" (prod)', "Minimum log level"],
-                ["format", "LogFormat", '"pretty" (dev) / "minimal" (prod)', "Output format"],
+                [
+                  "level",
+                  "LogLevel",
+                  '"trace" (dev) / "warn" (prod)',
+                  "Minimum log level",
+                ],
+                [
+                  "format",
+                  "LogFormat",
+                  '"pretty" (dev) / "minimal" (prod)',
+                  "Output format",
+                ],
                 ["timestamps", "boolean", "true", "Include timestamps"],
                 ["colors", "boolean", "true", "Enable colored output"],
                 ["trackRenders", "boolean", "true", "Track component renders"],
                 ["trackPropChanges", "boolean", "true", "Track prop changes"],
                 ["trackStateChanges", "boolean", "true", "Track state changes"],
               ].map(([option, type, def, desc]) => (
-                <tr key={option} className="border-b border-[var(--border-subtle)]">
-                  <td className="py-3 px-4 font-mono text-[var(--accent-green)]">{option}</td>
-                  <td className="py-3 px-4 font-mono text-[var(--accent-purple)]">{type}</td>
-                  <td className="py-3 px-4 font-mono text-[var(--text-muted)]">{def}</td>
+                <tr
+                  key={option}
+                  className="border-b border-[var(--border-subtle)]"
+                >
+                  <td className="py-3 px-4 font-mono text-[var(--accent-green)]">
+                    {option}
+                  </td>
+                  <td className="py-3 px-4 font-mono text-[var(--accent-purple)]">
+                    {type}
+                  </td>
+                  <td className="py-3 px-4 font-mono text-[var(--text-muted)]">
+                    {def}
+                  </td>
                   <td className="py-3 px-4">{desc}</td>
                 </tr>
               ))}
@@ -330,15 +403,22 @@ function Hooks() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">React Hooks</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          React Hooks
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
-          Powerful hooks for logging in functional components with automatic lifecycle tracking.
+          Powerful hooks for logging in functional components with automatic
+          lifecycle tracking.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useLogger</h2>
-        <p className="text-[var(--text-secondary)]">Creates a component-scoped logger instance.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Creates a component-scoped logger instance.
+        </p>
         <CodeBlock
           code={`import { useLogger } from "loggerect";
 
@@ -356,8 +436,12 @@ function MyComponent() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useLifecycleLogger</h2>
-        <p className="text-[var(--text-secondary)]">Automatically logs component mount and unmount events.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useLifecycleLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Automatically logs component mount and unmount events.
+        </p>
         <CodeBlock
           code={`import { useLifecycleLogger } from "loggerect";
 
@@ -372,8 +456,12 @@ function MyComponent() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useStateLogger</h2>
-        <p className="text-[var(--text-secondary)]">useState replacement that logs state changes.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useStateLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          useState replacement that logs state changes.
+        </p>
         <CodeBlock
           code={`import { useStateLogger } from "loggerect";
 
@@ -387,8 +475,12 @@ function Counter() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useRenderLogger</h2>
-        <p className="text-[var(--text-secondary)]">Tracks and logs every render with timing.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useRenderLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Tracks and logs every render with timing.
+        </p>
         <CodeBlock
           code={`import { useRenderLogger } from "loggerect";
 
@@ -403,8 +495,12 @@ function MyComponent() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useEffectLogger</h2>
-        <p className="text-[var(--text-secondary)]">useEffect replacement that logs effect execution.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useEffectLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          useEffect replacement that logs effect execution.
+        </p>
         <CodeBlock
           code={`import { useEffectLogger } from "loggerect";
 
@@ -426,8 +522,12 @@ function DataFetcher({ userId }) {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">useTimer</h2>
-        <p className="text-[var(--text-secondary)]">Manual performance timing within components.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          useTimer
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Manual performance timing within components.
+        </p>
         <CodeBlock
           code={`import { useTimer } from "loggerect";
 
@@ -447,7 +547,9 @@ function DataLoader() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">All Available Hooks</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          All Available Hooks
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { hook: "useLogger", desc: "Component-scoped logger" },
@@ -465,8 +567,12 @@ function DataLoader() {
               key={item.hook}
               className="p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]"
             >
-              <code className="text-[var(--accent-green)] font-mono">{item.hook}</code>
-              <p className="text-sm text-[var(--text-muted)] mt-1">{item.desc}</p>
+              <code className="text-[var(--accent-green)] font-mono">
+                {item.hook}
+              </code>
+              <p className="text-sm text-[var(--text-muted)] mt-1">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -479,15 +585,21 @@ function HOCs() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Higher-Order Components</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          Higher-Order Components
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
           Wrap your components with logging capabilities using HOCs.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">withLogger</h2>
-        <p className="text-[var(--text-secondary)]">Basic HOC for adding logging to any component.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          withLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Basic HOC for adding logging to any component.
+        </p>
         <CodeBlock
           code={`import { withLogger } from "loggerect";
 
@@ -509,8 +621,12 @@ export default withLogger(MyComponent, {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">withLoggerRef</h2>
-        <p className="text-[var(--text-secondary)]">HOC that forwards refs while adding logging.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          withLoggerRef
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          HOC that forwards refs while adding logging.
+        </p>
         <CodeBlock
           code={`import { withLoggerRef } from "loggerect";
 import { forwardRef } from "react";
@@ -526,8 +642,12 @@ export default withLoggerRef(Input, {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">withErrorLogger</h2>
-        <p className="text-[var(--text-secondary)]">HOC that catches and logs component errors.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          withErrorLogger
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          HOC that catches and logs component errors.
+        </p>
         <CodeBlock
           code={`import { withErrorLogger } from "loggerect";
 
@@ -546,14 +666,18 @@ export default withErrorLogger(RiskyComponent, {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">HOC Options</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          HOC Options
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-[var(--border-medium)]">
                 <th className="py-3 px-4 text-[var(--text-primary)]">Option</th>
                 <th className="py-3 px-4 text-[var(--text-primary)]">Type</th>
-                <th className="py-3 px-4 text-[var(--text-primary)]">Description</th>
+                <th className="py-3 px-4 text-[var(--text-primary)]">
+                  Description
+                </th>
               </tr>
             </thead>
             <tbody className="text-[var(--text-secondary)]">
@@ -565,9 +689,16 @@ export default withErrorLogger(RiskyComponent, {
                 ["level", "LogLevel", "Log level for this component"],
                 ["tags", "string[]", "Tags for filtering logs"],
               ].map(([option, type, desc]) => (
-                <tr key={option} className="border-b border-[var(--border-subtle)]">
-                  <td className="py-3 px-4 font-mono text-[var(--accent-green)]">{option}</td>
-                  <td className="py-3 px-4 font-mono text-[var(--accent-purple)]">{type}</td>
+                <tr
+                  key={option}
+                  className="border-b border-[var(--border-subtle)]"
+                >
+                  <td className="py-3 px-4 font-mono text-[var(--accent-green)]">
+                    {option}
+                  </td>
+                  <td className="py-3 px-4 font-mono text-[var(--accent-purple)]">
+                    {type}
+                  </td>
                   <td className="py-3 px-4">{desc}</td>
                 </tr>
               ))}
@@ -583,20 +714,28 @@ function Decorators() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">TypeScript Decorators</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          TypeScript Decorators
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
           Use decorators for elegant logging in class components and services.
         </p>
         <div className="mt-4 p-4 rounded-lg bg-[var(--accent-yellow)]/10 border border-[var(--accent-yellow)]/30">
           <p className="text-[var(--accent-yellow)]">
-            ⚠️ Requires <code className="font-mono">experimentalDecorators: true</code> in tsconfig.json
+            ⚠️ Requires{" "}
+            <code className="font-mono">experimentalDecorators: true</code> in
+            tsconfig.json
           </p>
         </div>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">@Log Decorator</h2>
-        <p className="text-[var(--text-secondary)]">Log method calls with arguments and timing.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          @Log Decorator
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Log method calls with arguments and timing.
+        </p>
         <CodeBlock
           code={`import { Log } from "loggerect";
 
@@ -617,8 +756,12 @@ class UserService {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">@LogClass Decorator</h2>
-        <p className="text-[var(--text-secondary)]">Apply logging to all methods in a class.</p>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          @LogClass Decorator
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          Apply logging to all methods in a class.
+        </p>
         <CodeBlock
           code={`import { LogClass } from "loggerect";
 
@@ -632,7 +775,9 @@ class MyService {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Level-Specific Decorators</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Level-Specific Decorators
+        </h2>
         <CodeBlock
           code={`import { Debug, Info, Warn, Error, Trace } from "loggerect";
 
@@ -656,7 +801,9 @@ class MyService {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">All Available Decorators</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          All Available Decorators
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
             { dec: "@Log", desc: "General method logging" },
@@ -674,8 +821,12 @@ class MyService {
               key={item.dec}
               className="p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]"
             >
-              <code className="text-[var(--accent-cyan)] font-mono">{item.dec}</code>
-              <p className="text-sm text-[var(--text-muted)] mt-1">{item.desc}</p>
+              <code className="text-[var(--accent-cyan)] font-mono">
+                {item.dec}
+              </code>
+              <p className="text-sm text-[var(--text-muted)] mt-1">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -688,14 +839,19 @@ function Plugins() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">Build Plugins</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          Build Plugins
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
-          Enable accurate source file:line tracking in the browser console with build plugins.
+          Enable accurate source file:line tracking in the browser console with
+          build plugins.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Vite</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Vite
+        </h2>
         <CodeBlock
           code={`// vite.config.ts
 import { defineConfig } from "vite";
@@ -708,7 +864,9 @@ export default defineConfig({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Next.js (Turbopack)</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Next.js (Turbopack)
+        </h2>
         <CodeBlock
           code={`// next.config.ts
 import type { NextConfig } from "next";
@@ -728,7 +886,9 @@ export default nextConfig;`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Next.js (Webpack)</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Next.js (Webpack)
+        </h2>
         <CodeBlock
           code={`// next.config.ts
 import type { NextConfig } from "next";
@@ -748,7 +908,9 @@ export default nextConfig;`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Webpack</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Webpack
+        </h2>
         <CodeBlock
           code={`// webpack.config.js
 const logrectPlugin = require("loggerect/unplugin");
@@ -760,7 +922,9 @@ module.exports = {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Rollup</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Rollup
+        </h2>
         <CodeBlock
           code={`// rollup.config.js
 import logrectPlugin from "loggerect/unplugin";
@@ -772,7 +936,9 @@ export default {
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">esbuild</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          esbuild
+        </h2>
         <CodeBlock
           code={`// esbuild.config.js
 const logrectPlugin = require("loggerect/unplugin");
@@ -784,7 +950,9 @@ require("esbuild").build({
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Babel (Alternative)</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Babel (Alternative)
+        </h2>
         <CodeBlock
           code={`// babel.config.js
 module.exports = {
@@ -800,14 +968,18 @@ function APIReference() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">API Reference</h1>
+        <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-4">
+          API Reference
+        </h1>
         <p className="text-lg text-[var(--text-secondary)]">
           Complete API documentation for loggerect.
         </p>
       </div>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Entry Points</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Entry Points
+        </h2>
         <CodeBlock
           code={`// Full library (React + Core)
 import { logger, useLogger, withLogger, configure } from "loggerect";
@@ -824,7 +996,9 @@ import { useLogger, useLifecycleLogger, useStateLogger } from "loggerect/hooks";
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">Logger Methods</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          Logger Methods
+        </h2>
         <CodeBlock
           code={`import { logger } from "loggerect";
 
@@ -858,7 +1032,9 @@ logger.render("ComponentName", 1, 2.5); // 🎨 Render #1 (2.5ms)`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">TypeScript Types</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          TypeScript Types
+        </h2>
         <CodeBlock
           code={`import type {
   LogLevel,
@@ -881,7 +1057,9 @@ type Environment = "development" | "production" | "test";`}
       </section>
 
       <section className="space-y-4">
-        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">SSR Utilities</h2>
+        <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+          SSR Utilities
+        </h2>
         <CodeBlock
           code={`import {
   isServer,
@@ -907,4 +1085,3 @@ const start = safePerformanceNow();`}
     </div>
   );
 }
-

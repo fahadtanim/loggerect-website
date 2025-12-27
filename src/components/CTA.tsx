@@ -55,7 +55,7 @@ export default function CTA() {
             )}
           </button>
           <Link
-            href="/docs"
+            href="./docs"
             onClick={handleGitHubClick}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-white/10 text-white font-semibold text-lg rounded-xl hover:border-green-500 hover:bg-[#1a1a25] transition-all"
           >

@@ -7,21 +7,24 @@ import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 export default function Navbar() {
   const log = useLogger("Navbar");
   useLifecycleLogger("Navbar");
-  
+
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 100;
       if (isScrolled !== scrolled) {
-        log.debug(`Scroll state changed`, { scrolled: isScrolled, scrollY: window.scrollY });
+        log.debug(`Scroll state changed`, {
+          scrolled: isScrolled,
+          scrollY: window.scrollY,
+        });
         setScrolled(isScrolled);
       }
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     log.debug("Scroll listener attached");
-    
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       log.debug("Scroll listener removed");
@@ -39,8 +42,8 @@ export default function Navbar() {
       } backdrop-blur-xl`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link 
-          href="/" 
+        <Link
+          href="./"
           className="flex items-center gap-3 text-white font-bold text-xl"
           onClick={() => handleNavClick("home")}
         >
@@ -66,7 +69,7 @@ export default function Navbar() {
             Examples
           </Link>
           <Link
-            href="/docs"
+            href="./docs"
             className="text-slate-400 hover:text-green-400 transition-colors text-sm font-medium hidden sm:block"
             onClick={() => handleNavClick("docs")}
           >

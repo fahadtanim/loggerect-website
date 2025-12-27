@@ -81,7 +81,7 @@ export default function Hero() {
             )}
           </button>
           <Link
-            href="/docs"
+            href="./docs"
             onClick={handleExamplesClick}
             className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-[#1a1a25] border border-white/10 text-white font-semibold rounded-xl hover:border-green-500 hover:bg-[#16161f] transition-all"
           >
