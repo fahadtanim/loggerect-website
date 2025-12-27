@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useLogger, useLifecycleLogger } from "loggerect/hooks";
 
@@ -47,9 +48,13 @@ export default function Navbar() {
           className="flex items-center gap-3 text-white font-bold text-xl"
           onClick={() => handleNavClick("home")}
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-cyan)] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">L</span>
-          </div>
+          <Image
+            src="/favicon/favicon-32x32.png"
+            alt="loggerect logo"
+            width={32}
+            height={32}
+            className="rounded-lg"
+          />
           <span>loggerect</span>
         </Link>
 
