@@ -16,7 +16,6 @@ const features = [
     description:
       "Beautiful decorator syntax for class components. Just add @Log() and you're done.",
     code: "@Log() handleClick() { ... }",
-    featured: true,
   },
   {
     icon: "🔄",
@@ -31,6 +30,7 @@ const features = [
     description:
       "Comprehensive hooks for functional components. useLogger, useStateLogger, and more.",
     code: "const log = useLogger('MyComponent')",
+    featured: true,
   },
   {
     icon: "🌍",
@@ -97,14 +97,16 @@ export default function Features() {
               className={`bg-[#16161f] rounded-2xl p-6 border transition-all hover:-translate-y-1 hover:shadow-lg cursor-pointer ${
                 feature.featured
                   ? "border-green-500/30 bg-gradient-to-br from-green-500/10 to-cyan-500/5"
-                  : "border-white/5 hover:border-green-500"
+                  : "border-green-500/30 bg-gradient-to-br from-green-500/10 to-cyan-500/5"
               }`}
               onMouseEnter={() => handleFeatureHover(feature.title)}
               onClick={() => handleFeatureClick(feature.title)}
             >
               <div className="text-4xl mb-4">{feature.icon}</div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-              <p className="text-slate-400 text-sm mb-4">{feature.description}</p>
+              <p className="text-slate-400 text-sm mb-4">
+                {feature.description}
+              </p>
               <code className="inline-block font-mono text-xs bg-[#0d0d12] px-3 py-1.5 rounded text-cyan-400">
                 {feature.code}
               </code>
