@@ -8,4 +8,5 @@ export { Decorators } from "./Decorators";
 export { Plugins } from "./Plugins";
 export { PerformanceMeasurement } from "./PerformanceMeasurement";
 export { APIReference } from "./APIReference";
+export { LoggerTest } from "./LoggerTest";
 

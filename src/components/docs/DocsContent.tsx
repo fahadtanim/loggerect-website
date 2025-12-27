@@ -13,6 +13,7 @@ import {
   Plugins,
   PerformanceMeasurement,
   APIReference,
+  LoggerTest,
 } from "../../components/docs";
 
 type Section =
@@ -24,7 +25,8 @@ type Section =
   | "decorators"
   | "plugins"
   | "performance"
-  | "api";
+  | "api"
+  | "test";
 
 const sections: { id: Section; title: string; icon: string }[] = [
   { id: "getting-started", title: "Getting Started", icon: "🚀" },
@@ -36,6 +38,7 @@ const sections: { id: Section; title: string; icon: string }[] = [
   { id: "plugins", title: "Build Plugins", icon: "🔌" },
   { id: "performance", title: "Performance Measurement", icon: "⏱️" },
   { id: "api", title: "API Reference", icon: "📚" },
+  { id: "test", title: "Interactive Test", icon: "🧪" },
 ];
 
 export function DocsContent() {
@@ -188,6 +191,7 @@ export function DocsContent() {
           {activeSection === "plugins" && <Plugins />}
           {activeSection === "performance" && <PerformanceMeasurement />}
           {activeSection === "api" && <APIReference />}
+          {activeSection === "test" && <LoggerTest />}
         </main>
       </div>
     </div>

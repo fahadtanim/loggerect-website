@@ -49,7 +49,7 @@ export default defineConfig({
 
           <div>
             <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
-              Next.js (Turbopack)
+              Next.js (Turbopack) - Next.js 15.6+
             </h3>
             <CodeBlock
               code={`// next.config.ts
@@ -58,15 +58,24 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   turbopack: {
     rules: {
+      // Apply loader to all TypeScript/JavaScript files
       "*.{ts,tsx,js,jsx}": {
         loaders: ["loggerect/loader"],
       },
+      // Or target specific directories:
+      // "src/**/*.{ts,tsx,js,jsx}": {
+      //   loaders: ["loggerect/loader"],
+      //   as: "*.{ts,tsx,js,jsx}",
+      // },
     },
   },
 };
 
 export default nextConfig;`}
             />
+            <p className="text-sm text-(--text-secondary) mt-2">
+              <strong>Note:</strong> For Next.js 15.6+, use <code className="px-1 py-0.5 bg-(--bg-card) rounded text-xs">turbopack.rules</code> (not <code className="px-1 py-0.5 bg-(--bg-card) rounded text-xs">experimental.turbo.rules</code>). The loader injects source file paths directly into your code, providing accurate source tracking even in bundled environments.
+            </p>
           </div>
 
           <div>

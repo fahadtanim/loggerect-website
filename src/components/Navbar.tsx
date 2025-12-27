@@ -47,7 +47,7 @@ export default function Navbar() {
           className="flex items-center gap-3 text-white font-bold text-xl"
           onClick={() => handleNavClick("home")}
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[var(--accent-green)] to-[var(--accent-cyan)] flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-linear-to-br from-(--accent-green) to-(--accent-cyan) flex items-center justify-center">
             <span className="text-white font-bold text-sm">L</span>
           </div>
           <span>loggerect</span>
