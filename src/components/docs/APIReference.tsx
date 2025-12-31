@@ -17,18 +17,21 @@ export function APIReference() {
           Entry Points
         </h2>
         <CodeBlock
-          code={`// Full library (React + Core)
-import { logger, useLogger, withLogger, configure } from "loggerect";
-
-// Core only (no React dependency) - for SSR/Node.js
-import { logger, configure } from "loggerect/core";
+          code={`// Main entry (SSR-safe, no React dependencies) - for Node.js & SSR
+import { logger, configure } from "loggerect";
 
 // React-specific features
-import { withLogger, withLoggerRef } from "loggerect/react";
-
-// Hooks only
-import { useLogger, useLifecycleLogger, useStateLogger } from "loggerect/hooks";`}
+import { useLogger, useLifecycleLogger, useStateLogger } from "loggerect/hooks";
+import { withLogger, withLoggerRef } from "loggerect/react";`}
         />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+            SSR & Node.js Support
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)]">
+            The main <code className="text-[var(--accent-green)]">loggerect</code> entry point is SSR-safe and works in Node.js. React hooks and HOCs are in separate entry points to avoid hydration issues.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">
@@ -39,11 +42,22 @@ import { useLogger, useLifecycleLogger, useStateLogger } from "loggerect/hooks";
           code={`import { logger } from "loggerect";
 
 // Log levels
-logger.trace(message, data?);  // 🔍 Most verbose
-logger.debug(message, data?);  // 🐛 Debug info
-logger.info(message, data?);   // ℹ️ General info
-logger.warn(message, data?);   // ⚠️ Warnings
-logger.error(message, data?);  // ❌ Errors
+logger.trace(message, data?, source?);  // 🔍 Most verbose
+logger.debug(message, data?, source?);  // 🐛 Debug info
+logger.info(message, data?, source?);   // ℹ️ General info
+logger.warn(message, data?, source?);   // ⚠️ Warnings
+logger.error(message, data?, source?);  // ❌ Errors
+logger.log(level, message, data?, source?); // Generic log method
+
+// Source parameter (optional, usually injected by build plugins)
+const source = {
+  __source: {
+    fileName: "myfile.ts",
+    lineNumber: 42,
+    columnNumber: 10,
+  },
+};
+logger.info("Message", { data: "value" }, source);
 
 // Component-scoped logger
 const componentLogger = logger.forComponent("MyComponent");

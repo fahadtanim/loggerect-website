@@ -123,7 +123,7 @@ logger.log("info", "Custom log level", { data: "value" });`}
           Logging with Data
         </h2>
         <p className="text-[var(--text-secondary)]">
-          Attach additional data to your logs for better debugging:
+          Attach additional data to your logs for better debugging. Nested objects are automatically serialized with full depth:
         </p>
         <CodeBlock
           code={`import { logger } from "loggerect";
@@ -136,13 +136,13 @@ logger.info("User action", {
   timestamp: Date.now(),
 });
 
-// Complex nested objects
+// Complex nested objects (automatically serialized deeply)
 logger.debug("API response", {
   status: 200,
   data: {
     users: [
-      { id: 1, name: "John" },
-      { id: 2, name: "Jane" },
+      { id: 1, name: "John", profile: { email: "john@example.com", settings: { theme: "dark" } } },
+      { id: 2, name: "Jane", profile: { email: "jane@example.com", settings: { theme: "light" } } },
     ],
   },
   headers: {
@@ -165,8 +165,29 @@ try {
     stack: error.stack,
     context: "user registration",
   });
-}`}
+}
+
+// Deep nesting is fully displayed (not truncated as [Object])
+logger.info("Complex nested structure", {
+  level1: {
+    level2: {
+      level3: {
+        level4: {
+          level5: { value: "deep value" }
+        }
+      }
+    }
+  }
+});`}
         />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+            Deep Object Serialization
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)]">
+            Loggerect automatically serializes nested objects with full depth. In Node.js, it uses <code className="text-[var(--accent-green)]">util.inspect()</code> for beautiful formatting. In the browser, objects are passed directly to the console for native inspection.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">
@@ -221,6 +242,50 @@ export default async function ServerPage() {
   return <div>Server-rendered content</div>;
 }`}
         />
+      </section>
+
+      <section className="space-y-3 sm:space-y-4">
+        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
+          Source Location Injection (Build Plugins)
+        </h2>
+        <p className="text-[var(--text-secondary)]">
+          When using build plugins (Turbopack loader, Vite plugin, Babel plugin), source location is automatically injected. You can also manually pass source information:
+        </p>
+        <CodeBlock
+          code={`import { logger } from "loggerect";
+
+// With build plugin configured, source is automatically injected
+logger.info("Message with auto-injected source");
+
+// Manual source injection (advanced use case)
+logger.info(
+  "Message with manual source",
+  { data: "value" },
+  {
+    __source: {
+      fileName: "myfile.ts",
+      lineNumber: 42,
+      columnNumber: 10,
+    },
+  }
+);
+
+// All logger methods support source injection:
+logger.trace("Trace", data, source);
+logger.debug("Debug", data, source);
+logger.info("Info", data, source);
+logger.warn("Warn", data, source);
+logger.error("Error", data, source);
+logger.log("info", "Log", data, source);`}
+        />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+            Build Plugin Setup
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)] mb-2">
+            For automatic source injection, configure the loggerect loader/plugin in your build tool. See the <strong>Getting Started</strong> guide for setup instructions.
+          </p>
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">

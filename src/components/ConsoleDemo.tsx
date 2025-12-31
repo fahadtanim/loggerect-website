@@ -171,7 +171,7 @@ export default function ConsoleDemo() {
 
   useEffect(() => {
     // Only log interval start/stop once with lower verbosity
-    const interval = setInterval(addLog, 8000); // Slower interval to reduce console spam
+    const interval = setInterval(addLog, 2000); // Slower interval to reduce console spam
 
     return () => {
       clearInterval(interval);

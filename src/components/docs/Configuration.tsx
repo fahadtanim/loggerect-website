@@ -389,41 +389,63 @@ configure({
           Custom Transports
         </h2>
         <p className="text-[var(--text-secondary)]">
-          Send logs to external services or custom handlers:
+          Send logs to external services or custom handlers. A transport is a function that receives log entries:
         </p>
         <CodeBlock
-          code={`import { configure } from "loggerect";
+          code={`import { configure, logger } from "loggerect";
 import type { LogTransport, LogEntry } from "loggerect";
 
-// Custom transport to send logs to API
-const apiTransport: LogTransport = {
-  name: "api",
-  level: "info",
-  handler: (entry: LogEntry) => {
-    // Send to your logging service
-    fetch("/api/logs", {
-      method: "POST",
-      body: JSON.stringify(entry),
-    });
-  },
+// Transport is a function that receives LogEntry
+const apiTransport: LogTransport = async (entry: LogEntry) => {
+  // Send to your logging service
+  await fetch("/api/logs", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(entry),
+  });
 };
 
 // Custom transport for error tracking
-const errorTrackingTransport: LogTransport = {
-  name: "sentry",
-  level: "error",
-  handler: (entry: LogEntry) => {
-    if (entry.level === "error") {
-      // Send to Sentry, Rollbar, etc.
-      Sentry.captureException(entry.data);
-    }
-  },
+const errorTrackingTransport: LogTransport = (entry: LogEntry) => {
+  if (entry.level === "error") {
+    // Send to Sentry, Rollbar, etc.
+    Sentry.captureException(entry.data);
+  }
+};
+
+// Add transports via configuration
+configure({
+  transports: [apiTransport, errorTrackingTransport],
+});
+
+// Or add transports dynamically using the logger instance
+const removeTransport = logger.addTransport(apiTransport);
+// Later, remove it:
+removeTransport(); // or logger.removeTransport(apiTransport);
+
+// Example: Send only errors to external service
+const errorOnlyTransport: LogTransport = (entry) => {
+  if (entry.level === "error") {
+    // Your error reporting logic
+    console.error("Sending error to service:", entry);
+  }
 };
 
 configure({
-  transports: [apiTransport, errorTrackingTransport],
+  transports: [errorOnlyTransport],
 });`}
         />
+        <div className="p-3 sm:p-4 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+          <h3 className="font-semibold text-[var(--text-primary)] mb-2">
+            Transport Function Signature
+          </h3>
+          <p className="text-sm text-[var(--text-secondary)] mb-2">
+            A transport is a function that takes a <code className="text-[var(--accent-green)]">LogEntry</code> and can be synchronous or asynchronous:
+          </p>
+          <CodeBlock
+            code={`type LogTransport = (entry: LogEntry) => void | Promise<void>;`}
+          />
+        </div>
       </section>
 
       <section className="space-y-3 sm:space-y-4">
